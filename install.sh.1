@@ -1,0 +1,24 @@
+#!/usr/bin/expect
+
+set PACKAGE1 "/root/work/expect/hpq_ilo.pkg"
+set PACKAGE2 "/root/work/expect/hpq_health.pkg"
+
+puts "exec ${PACKAGE1}"
+expect "Select install package"
+send   "\n"
+expect "Do you create new directory"
+send   "y\n"
+expect "Do you really install the package"
+send   "y\n"
+expect "complete"
+
+#spawn  "${PACKAGE2}"
+#expect "?"
+#send   "\n"
+#expect "?"
+#send   "y\n"
+#expect "?"
+#send   "y\n"
+#expect "complete"
+
+exit 0

@@ -1,0 +1,15 @@
+#!/bin/sh
+
+#array=("a" "b" "c")
+#echo $array
+#echo ${array[@]}
+
+array+=("d")
+
+echo ${array[@]}
+
+array[1]="$HOSTNAME"
+array[2]=`echo $HOSTNAME`
+
+echo ${#array[@]}
+echo ${array[@]}

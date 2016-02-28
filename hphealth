@@ -1,0 +1,55 @@
+#!/bin/sh
+
+echo "Package:"
+echo "1) hpqilo"
+echo ""
+echo "Select install package (defalt:all) [?,??,q]"
+read ANS
+
+if [ -e $ANS ]; then
+    ANS="all"
+fi
+
+if [ $ANS = "all" ]; then
+    echo "you pressed $ANS"
+else
+    echo "you pressed $ANS"
+    echo ""
+    echo "installation is failed."
+    echo "exit"
+    exit 0
+fi
+
+echo ""
+
+echo "Do you create new directory?  [y,n,?,q]"
+read ANS2
+
+if [ $ANS2 = "y" ]; then
+    echo "you pressed $ANS2"
+else
+    echo "you pressed $ANS2"
+    echo ""
+    echo "installation is failed."
+    echo "exit"
+    exit 0
+fi 
+
+echo "" 
+echo "Do you really install the package?  [y,n,?,q]"
+read ANS3
+
+
+if [ $ANS3 = "y" ]; then
+    echo "you pressed $ANS3"
+else
+    echo "you pressed $ANS3"
+    echo ""
+    echo "installation is failed."
+    echo "exit"
+    exit 0
+fi 
+
+echo ""
+echo "install is complete!"
+exit 0

@@ -1,0 +1,73 @@
+#!/bin/sh
+
+PACKAGE="hpqhealth"
+FILEPATH="/root/work/expect"
+
+echo "Package:"
+echo "1) $PACKAGE"
+echo ""
+
+# 質問1回目
+echo "Select install package (defalt:all) [?,??,q]"
+read ANS
+
+if [ -e $ANS ]; then
+    ANS="all"
+fi
+
+if [ $ANS = "all" ]; then
+    echo "you pressed $ANS"
+else
+    echo "you pressed $ANS"
+    echo ""
+    echo "installation is failed."
+    echo "exit"
+    exit 1 
+fi
+
+echo ""
+
+# 既にインストールされているか判定
+if [ -e $FILEPATH/.$PACKAGE.bin ]; then
+  echo "[ERROR] $PACKAGE is alrealy installed."
+  echo "installation is failed"
+  echo "exit"
+  exit 1
+fi
+
+# 質問2回目
+echo "Do you create new directory?  [y,n,?,q]"
+read ANS2
+
+if [ $ANS2 = "y" ]; then
+    echo "you pressed $ANS2"
+else
+    echo "you pressed $ANS2"
+    echo ""
+    echo "installation is failed."
+    echo "exit"
+    exit 0
+fi 
+
+echo "" 
+
+# 質問3回目
+echo "Do you really install the package?  [y,n,?,q]"
+read ANS3
+
+if [ $ANS3 = "y" ]; then
+    echo "you pressed $ANS3"
+else
+    echo "you pressed $ANS3"
+    echo ""
+    echo "installation is failed."
+    echo "exit"
+    exit 1  
+fi 
+
+# インストール済判定用ファイル作成 
+touch $FILEPATH/.$PACKAGE.bin
+
+echo ""
+echo "install is complete!"
+exit 0
