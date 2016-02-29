@@ -7,14 +7,9 @@ HOSTSFILE=$1
 PROMPT="#"
 i=0
 
-if [ $# -ne 1 ] ;  then
+if [ $# -ne 1 ] || [ ! -f $1 ] ;  then
   echo "[ERROR] Please set list file of target hosts to 1st arg."
   exit 1;
-fi
-
-if [ ! -f $1 ]; then
-  echo $HOSTSFILE > ./.hostfile
-  HOSTSFILE="./.hostfile"
 fi
 
 while read HOSTNAME
@@ -51,14 +46,14 @@ do
     }
     
     expect \"$PROMPT\"
-    send   \"ls -l ${PACKAGE1}; echo $?\n\"
+    send   \"ls -l ${PACKAGE1} ${PACKAGE2}\n\"
     
     expect {
-      -regexp \"0\r\n.*$PROMPT\" {
-        send   \"${PACKAGE1}\n\"
+      -regexp \"cannot access.*$PROMPT\" {
+        exit 1
       }
       \"$PROMPT\" {
-        exit 1
+        send   \"${PACKAGE1}\n\"
       }
     }
     expect {
